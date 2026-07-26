@@ -37,7 +37,7 @@ st.markdown("""
         margin-bottom: 1rem;
     }
     </style>
-""", unsafe_allow_syntax_gradient=True)
+""", unsafe_allow_html=True)
 
 # ==============================================================================
 # 2. CARREGAMENTO DO MODELO DE MACHINE LEARNING
@@ -82,8 +82,8 @@ st.sidebar.info(
 # PÁGINA 1: 🏠 VISÃO GERAL
 # ==============================================================================
 if pagina == "🏠 Visão Geral":
-    st.markdown("<div class='main-header'>🎓 Associação Passos Mágicos</div>", unsafe_allow_syntax_gradient=True)
-    st.markdown("<div class='sub-header'>Plataforma de Inteligência Educacional e Alerta Precoce de Defasagem</div>", unsafe_allow_syntax_gradient=True)
+    st.markdown("<div class='main-header'>🎓 Associação Passos Mágicos</div>", unsafe_allow_html=True)
+    st.markdown("<div class='sub-header'>Plataforma de Inteligência Educacional e Alerta Precoce de Defasagem</div>", unsafe_allow_html=True)
 
     st.markdown("""
     ### 🌟 Sobre a Organização
@@ -108,7 +108,7 @@ if pagina == "🏠 Visão Geral":
         <h4>💡 Proposta de Valor do Projeto</h4>
         <p>A partir dos dados históricos dos ciclos 2022, 2023 e 2024, a ferramenta identifica padrões sutis de comportamento (engajamento, psicopedagógico e autoavaliação) para <b>emitir um alerta preventivo antes mesmo que o aluno tire notas baixas</b> nas avaliações finais.</p>
     </div>
-    """, unsafe_allow_syntax_gradient=True)
+    """, unsafe_allow_html=True)
 
 # ==============================================================================
 # PÁGINA 2: 📊 ANÁLISE EXPLORATÓRIA (EDA)
