@@ -4,7 +4,7 @@ import numpy as np
 import joblib
 
 # ==============================================================================
-# 1. CONFIGURAÇÃO DA PÁGINA E ESTILO GLOBAL
+# 1. CONFIGURAÇÃO DA PÁGINA E ESTILO GLOBAL (COMPATÍVEL COM DARK/LIGHT MODE)
 # ==============================================================================
 st.set_page_config(
     page_title="Passos Mágicos | Alerta Precoce de Defasagem",
@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Estilização leve via CSS para destacar os cards
+# Estilização CSS corrigida para forçar cor de texto legível
 st.markdown("""
     <style>
     .main-header {
@@ -25,16 +25,27 @@ st.markdown("""
     }
     .sub-header {
         font-size: 1.1rem;
-        color: #555;
+        color: #555555;
         text-align: center;
         margin-bottom: 2rem;
     }
     .card {
-        background-color: #f8f9fa;
+        background-color: #f0f4f8;
         padding: 1.5rem;
         border-radius: 0.5rem;
-        border-left: 5px solid #1F4E79;
+        border-left: 6px solid #1F4E79;
         margin-bottom: 1rem;
+        color: #111111 !important;
+    }
+    .card h4 {
+        color: #1F4E79 !important;
+        font-weight: bold;
+        margin-top: 0;
+    }
+    .card p {
+        color: #222222 !important;
+        font-size: 1.05rem;
+        line-height: 1.5;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -58,8 +69,8 @@ except Exception as e:
 # ==============================================================================
 # 3. MENU LATERAL DE NAVEGAÇÃO (SIDEBAR)
 # ==============================================================================
-st.sidebar.image("https://passosmagicos.org.br/wp-content/uploads/2020/09/logo-passos-magicos.png", width=220)
-st.sidebar.title("📌 Menu Principal")
+st.sidebar.markdown("# 🎓 Passos Mágicos")
+st.sidebar.markdown("### 📌 Menu Principal")
 
 pagina = st.sidebar.radio(
     "Navegue pelas seções:",
@@ -90,23 +101,23 @@ if pagina == "🏠 Visão Geral":
     A **Associação Passos Mágicos** atua há mais de 30 anos transformando a vida de crianças e jovens em situação de vulnerabilidade social através da educação de qualidade, apoio psicopedagógico e ampliação de horizontes.
 
     ### 🎯 O Desafio do Datathon
-    Com o objetivo de potencializar a retenção dos estudantes e prevenir a queda no rendimento escolar, desenvolvemos este sistema preditivo baseado no **Pesquisa do Desenvolvimento Educacional (PEDE)**.
+    Com o objetivo de potencializar a retenção dos estudantes e prevenir a queda no rendimento escolar, desenvolvemos este sistema preditivo baseado na **Pesquisa do Desenvolvimento Educacional (PEDE)**.
     """)
 
     st.markdown("---")
     
-    # KPIs Rápidos
+    # KPIs Rápidos Atualizados com os Dados Reais do seu Modelo
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Alunos Monitorados", "1.200+", delta="2022-2024")
+    col1.metric("Alunos Avaliados", "678 Estudantes", delta="Painel 2023-2024")
     col2.metric("Dimensões Analisadas", "7 Indicadores", delta="PEDE")
-    col3.metric("Acurácia do Modelo", "76%", delta="Cenário Completo")
-    col4.metric("Capacidade Discriminativa", "0.852 ROC-AUC", delta="Excelente")
+    col3.metric("Acurácia (Alerta Precoce)", "64%", delta="Cenário Comportamental")
+    col4.metric("Recall do Risco", "71%", delta="Captura de Queda de Rendimento")
 
     st.markdown("---")
     st.markdown("""
     <div class='card'>
         <h4>💡 Proposta de Valor do Projeto</h4>
-        <p>A partir dos dados históricos dos ciclos 2022, 2023 e 2024, a ferramenta identifica padrões sutis de comportamento (engajamento, psicopedagógico e autoavaliação) para <b>emitir um alerta preventivo antes mesmo que o aluno tire notas baixas</b> nas avaliações finais.</p>
+        <p>A partir dos dados históricos dos ciclos 2022, 2023 e 2024, a ferramenta identifica padrões de comportamento (engajamento, psicopedagógico e autoavaliação) para <b>emitir um alerta preventivo antes mesmo que o aluno tire notas baixas</b> nas avaliações finais. O modelo de Alerta Precoce atinge 71% de sensibilidade (recall) na identificação de alunos em risco.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -140,7 +151,7 @@ elif pagina == "📊 Análise Exploratória (EDA)":
         with col1:
             st.info("📌 **Soberania do Histórico:** O INDE do ciclo anterior representa ~45% do peso de decisão para prever a tendência futura do aluno.")
         with col2:
-            st.success("🧠 **O Sinal Comportamental:** O modelo de 'Alerta Precoce' (sem notas) alcançou ROC-AUC de ~0.70, provando que quedas de engajamento antecedem a defasagem acadêmica.")
+            st.success("🧠 **O Sinal Comportamental:** O modelo de 'Alerta Precoce' alcançou **71% de Recall** para identificar queda de rendimento, provando que desengajamento antecede notas baixas.")
 
 # ==============================================================================
 # PÁGINA 3: 🤖 SIMULADOR PREDITIVO (MACHINE LEARNING)
@@ -196,13 +207,12 @@ elif pagina == "🎯 Conclusões & Impacto":
     st.markdown("""
     ### 📌 Recomendações Acionáveis:
 
-    1. **Operacionalização em Dois Momentos:**
-       * **Meio do Ano (Modelo Comportamental):** Aplicar a triagem focada no Engajamento ($IEG$) e Psicopedagógico ($IPP$) para acolher os alunos em risco antes das avaliações do 2º semestre.
-       * **Fim do Ano (Modelo Completo):** Planejamento das turmas, bolsas e apadrinhamento para o ano seguinte com base na matriz completa de risco.
+    1. **Operacionalização do Alerta Precoce:**
+       * **Foco no Recall (71%):** O modelo comportamental prioriza não deixar nenhum aluno em risco passar despercebido, mesmo antes da divulgação das notas finais do semestre.
+       
+    2. **Ações para Evitar a Inércia Negativa:**
+       * Como o $INDE$ histórico responde por ~45% do risco futuro, alunos que apresentarem estagnação no 1º semestre devem receber tutoria individual preventiva.
 
-    2. **Foco na Prevenção do 'Efeito Inércia':**
-       * Como o histórico do $INDE$ tem o maior peso preditivo, alunos que estagnam exigem atenção dobrada no ciclo seguinte para evitar uma queda severa.
-
-    3. **Adoção do Dashboard:**
-       * Capacitação dos tutores da ONG para usarem este simulador durante as reuniões de alinhamento individual.
+    3. **Adoção Prática do Dashboard:**
+       * Utilizar este simulador nas reuniões de conselho pedagógico para priorizar a distribuição de bolsas e atendimento psicossocial.
     """)
