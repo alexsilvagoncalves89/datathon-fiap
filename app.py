@@ -196,6 +196,69 @@ elif pagina == "🤖 Simulador Preditivo":
             else:
                 st.success(f"✅ **ESTUDANTE EM TRAJETÓRIA SAUDÁVEL!** Probabilidade de defasagem baixa: **{probabilidade * 100:.1f}%**")
                 st.info("💡 **Plano de Ação Sugerido:** Aluno com padrão estável. Manter o plano pedagógico padrão de acompanhamento.")
+
+            # ==================================================================
+            # NOVO: DIAGNÓSTICO PRESCRITIVO DETALHADO POR MÉTRICA (SUGESTÃO DO GRUPO)
+            # ==================================================================
+            st.markdown("---")
+            st.subheader("🔍 Diagnóstico Detalhado por Indicador")
+            st.write("Análise individualizada de cada dimensão para direcionamento preventivo dos tutores e psicólogos:")
+
+            def avaliar_metricas(ind, valor):
+                if ind == 'INDE_2023':
+                    nome = "Histórico (INDE 2023)"
+                    if valor < 6.0: return nome, "🔴 Crítico", "Histórico de baixo rendimento. Exige plano de recuperação imediato."
+                    elif valor < 7.5: return nome, "🟡 Moderado", "Histórico mediano. Necessita de acompanhamento para não estagnar."
+                    else: return nome, "🟢 Saudável", "Histórico consistente de bom rendimento escolar."
+                elif ind == 'IDA':
+                    nome = "Desempenho Acadêmico (IDA)"
+                    if valor < 6.0: return nome, "🔴 Crítico", "Notas formais baixas. Recomenda-se reforço em Português e Matemática."
+                    elif valor < 7.5: return nome, "🟡 Moderado", "Rendimento escolar razoável. Acompanhar avaliações parciais."
+                    else: return nome, "🟢 Saudável", "Excelente domínio dos conteúdos das matérias escolares."
+                elif ind == 'IAN':
+                    nome = "Adequação de Nível (IAN)"
+                    if valor < 5.0: return nome, "🔴 Defasagem Severa", "Estudante com defasagem idade-série acentuada."
+                    elif valor < 8.0: return nome, "🟡 Defasagem Moderada", "Pequeno descompasso entre a série atual e a idade ideal."
+                    else: return nome, "🟢 Adequado", "Estudante na série perfeitamente adequada para sua idade."
+                elif ind == 'IEG':
+                    nome = "Engajamento e Frequência (IEG)"
+                    if valor < 6.0: return nome, "🔴 Crítico", "Faltas constantes e tarefas não entregues. Risco de desengajamento!"
+                    elif valor < 7.5: return nome, "🟡 Moderado", "Participação oscilante nas atividades da associação."
+                    else: return nome, "🟢 Saudável", "Excelente presença e pontualidade na entrega de trabalhos."
+                elif ind == 'IPP':
+                    nome = "Avaliação Psicopedagógica (IPP)"
+                    if valor < 6.0: return nome, "🔴 Crítico", "Avaliação cognitiva aponta dificuldades significativas no aprendizado."
+                    elif valor < 7.5: return nome, "🟡 Moderado", "Desenvolvimento cognitivo e pedagógico dentro da média."
+                    else: return nome, "🟢 Saudável", "Ótima assimilação de novos conceitos e raciocínio estruturado."
+                elif ind == 'IPS':
+                    nome = "Aspectos Psicossociais (IPS)"
+                    if valor < 6.0: return nome, "🔴 Crítico", "Vulnerabilidade socioemocional ou contexto familiar delicado."
+                    elif valor < 7.5: return nome, "🟡 Moderado", "Acompanhamento social em estado de observação."
+                    else: return nome, "🟢 Saudável", "Ambiente socioemocional equilibrado e bom suporte familiar."
+                elif ind == 'IAA':
+                    nome = "Autoavaliação (IAA)"
+                    if valor < 6.0: return nome, "🔴 Crítico", "Baixa autoestima e percepção negativa do próprio aprendizado."
+                    elif valor < 7.5: return nome, "🟡 Moderado", "Autopercepção moderada quanto ao próprio potencial."
+                    else: return nome, "🟢 Saudável", "Estudante confiante e consciente da sua evolução."
+                elif ind == 'IPV':
+                    nome = "Ponto de Virada (IPV)"
+                    if valor < 6.0: return nome, "🔴 Crítico", "Maturidade e autonomia ainda em estágio inicial."
+                    elif valor < 7.5: return nome, "🟡 Moderado", "Sinais de autonomia em desenvolvimento. Necessita de mentoria."
+                    else: return nome, "🟢 Saudável", "Protagonista do próprio aprendizado, alta autonomia e liderança."
+                return ind, "⚪ N/A", ""
+
+            col_a, col_b = st.columns(2)
+            metricas_ordem = ['INDE_2023', 'IDA', 'IAN', 'IEG', 'IPP', 'IPS', 'IAA', 'IPV']
+            
+            for idx, met in enumerate(metricas_ordem):
+                if met in entradas:
+                    nome_m, status, desc = avaliar_metricas(met, entradas[met])
+                    target_col = col_a if idx % 2 == 0 else col_b
+                    
+                    with target_col:
+                        with st.expander(f"{status} | **{nome_m}**: {entradas[met]:.1f}", expanded=True):
+                            st.write(f"💡 {desc}")
+
         else:
             st.error("Não foi possível realizar a predição. O modelo não foi carregado corretamente.")
 
