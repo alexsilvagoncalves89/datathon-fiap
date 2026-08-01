@@ -8,8 +8,7 @@ Análise longitudinal de dados educacionais e deploy de um modelo preditivo (Ran
 ## 🚀 Link da Aplicação em Produção
 O sistema web foi implantado com sucesso no Streamlit Community Cloud e pode ser acessado em tempo real pelas equipes pedagógicas e psicológicas da ONG através do link abaixo:
 
-🔗 **[Acessar o Painel de Alerta Precoce](https://datathon-fiap-alt.streamlit.app/)** *(Nota: Insira o seu link final do Streamlit aqui)*
-
+🔗 **[Acessar o Painel de Alerta Precoce](https://datathon-fiap-alt.streamlit.app/)**
 ---
 
 ## 📌 O Problema de Negócio e a Solução
