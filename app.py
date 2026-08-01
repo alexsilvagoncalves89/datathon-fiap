@@ -139,6 +139,7 @@ elif pagina == "📊 Análise Exploratória (EDA)":
         * **IDA (Indicador de Desempenho Acadêmico):** Média ponderada das notas de Português e Matemática.
         * **IEG (Indicador de Engajamento):** Frequência, presença e entrega das tarefas no programa.
         * **IPP (Indicador Psicopedagógico):** Avaliação contínua feita pela equipe de psicologia e pedagogia.
+        * **IPS (Indicador Psicossocial):** Avaliação dos aspectos socioemocionais e do contexto familiar do aluno.
         * **IPV (Indicador do Ponto de Virada):** Avaliação de autonomia, maturidade e inteligência emocional.
         * **IAA (Indicador de Autoavaliação):** Nota atribuída pelo próprio estudante sobre o seu processo de aprendizagem.
         """)
@@ -175,6 +176,7 @@ elif pagina == "🤖 Simulador Preditivo":
         st.markdown("#### 🧠 Indicadores Comportamentais & Sociais")
         entradas['IEG'] = st.slider("IEG - Engajamento e Frequência", 0.0, 10.0, 8.0, step=0.1)
         entradas['IPP'] = st.slider("IPP - Avaliação Psicopedagógica", 0.0, 10.0, 7.0, step=0.1)
+        entradas['IPS'] = st.slider("IPS - Indicador Psicossocial", 0.0, 10.0, 7.0, step=0.1)
         entradas['IAA'] = st.slider("IAA - Autoavaliação do Aluno", 0.0, 10.0, 8.0, step=0.1)
         entradas['IPV'] = st.slider("IPV - Ponto de Virada", 0.0, 10.0, 7.0, step=0.1)
 
@@ -215,4 +217,7 @@ elif pagina == "🎯 Conclusões & Impacto":
 
     3. **Adoção Prática do Dashboard:**
        * Utilizar este simulador nas reuniões de conselho pedagógico para priorizar a distribuição de bolsas e atendimento psicossocial.
+       
+    4. **Automatização de Planos de Ação (Excel):**
+       * Além deste simulador em tempo real, o algoritmo desenvolvido gera uma planilha de triagem completa contendo diagnósticos textuais automatizados (ex: "Reforço Acadêmico", "Mentoria de Autoestima") para toda a base de alunos.
     """)
