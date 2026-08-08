@@ -170,7 +170,7 @@ elif pagina == "🤖 Simulador Preditivo":
         st.markdown("#### 📌 Histórico & Desempenho Acadêmico")
         entradas['INDE_2023'] = st.slider("INDE do Ano Anterior (Histórico)", 0.0, 10.0, 7.5, step=0.1)
         entradas['IDA'] = st.slider("IDA - Desempenho Acadêmico (Notas)", 0.0, 10.0, 7.0, step=0.1)
-        entradas['IAN'] = st.slider("IAN - Adequação de Nível/Idade", 0.0, 10.0, 5.0, step=0.1)
+        entradas['IAN'] = st.slider("IAN - Adequação de Nível/Idade", 2.5, 10.0, 5.0, step=2.5)
 
     with col2:
         st.markdown("#### 🧠 Indicadores Comportamentais & Sociais")
